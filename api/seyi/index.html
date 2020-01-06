@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <style>
+                       body {
+          background: #efefef;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+        }
+        
+        .wrapper {
+          background: #fff;
+          border-radius: 2px;
+          overflow: hidden;
+          min-width: 300px;
+          width: 300px;
+          height: 550px;
+          margin: 20px;
+          box-shadow: 0 20px 80px -15px rgba(28, 20, 13, 0.5), 0 5px 20px -5px rgba(28, 20, 13, 0.3);
+          display: flex;
+          flex-direction: column;
+        }
+        
+        header, section, footer {
+          width: 100%;
+        }
+        
+        header {
+          height: 56px;
+          background: #212128;
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 16px;
+          box-sizing: border-box;
+          line-height: 24px;
+          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+        header h6 {
+          text-align: center;
+          flex-grow: 1;
+          font-family: 'Roboto Condensed';
+          font-size: 20px;
+          font-weight: normal;
+          margin: 0 0 2px 0;
+        }
+        header .material-icons {
+          color: rgba(255, 255, 255, 0.6);
+          vertical-align: bottom;
+          position: relative;
+        }
+        header .material-icons:hover:after {
+          position: absolute;
+          top: 50% !important;
+          left: 50% !important;
+          margin-top: -18px;
+          margin-left: -18px;
+          content: '';
+          display: block;
+          background: rgba(255, 255, 255, 0.08);
+          width: 36px !important;
+          height: 36px !important;
+          border-radius: 50% !important;
+        }
+        
+        section {
+          flex: auto;
+          background: #FAFAFA;
+          max-height: 500px;
+          overflow: auto;
+        }
+        section .scroll {
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+        section .message-wrapper {
+          padding: 5px 0;
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        section .message-wrapper .message-box {
+          order: 1;
+          position: relative;
+          display: inline-block;
+          font-size: 13px;
+          line-height: 18px;
+          font-weight: 400;
+          font-family: Roboto;
+        }
+        section .message-wrapper .ago {
+          font-size: 11px;
+          align-self: center;
+          white-space: nowrap;
+          padding: 6px;
+          color: rgba(33, 33, 40, 0.7);
+          font-family: Roboto;
+        }
+        section .message-wrapper.in {
+          justify-content: flex-start;
+          padding-right: 6px;
+        }
+        section .message-wrapper.in .message-box {
+          background: #212128;
+          padding: 12px 20px 12px 50px;
+          left: -30px;
+          margin-right: -30px;
+          border-radius: 0 10px 10px 0;
+          color: rgba(255, 255, 255, 0.95);
+          box-shadow: 0 0 30px -5px rgba(33, 33, 40, 0.4);
+        }
+        section .message-wrapper.in .ago {
+          order: 2;
+        }
+        section .message-wrapper.out {
+          justify-content: flex-end;
+          padding-left: 6px;
+          text-align: justify;
+          max-width: 260px;
+          width: 260px
+          
+        }
+        section .message-wrapper.out .message-box {
+          background: #ffffff;
+          padding: 12px 50px 12px 20px;
+          right: -30px;
+          margin-left: -30px;
+          max-width: 260px;
+          width: 200px;
+          border-radius: 10px 0 0 10px;
+          color: #212128;
+          box-shadow: 0 0 30px -5px rgba(33, 33, 40, 0.3);
+        }
+        section .message-wrapper.out .message-box p{
+            width: 100%;
+        }
+        section .message-wrapper.out .ago {
+          order: 0;
+        }
+        
+        footer {
+          min-height: 56px;
+          height: 56px;
+          background: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        footer div {
+          position: relative;
+          padding: 12px;
+          width: 100%;
+          background: #212128;
+        }
+        footer div .search {
+          background: #ffffff;
+          color: #212128;
+          border: 0;
+          -box-shadow: 0 0 30px -5px rgba(33, 33, 40, 0.4);
+          width: 85%;
+          font-size: 16px;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+          padding: 0px 3px;
+          box-sizing: border-box;
+          position: relative;
+          z-index: 10;
+          outline: none;
+          font-size: 18px;
+          line-height: 18px;
+          font-weight: 400;
+          font-family: Roboto;
+        }
+        
+        .ripple {
+          position: relative;
+          transform: translate3d(0, 0, 0);
+        }
+        
+        .ripple:after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+          background-repeat: no-repeat;
+          background-position: 50%;
+          transform: scale(10, 10);
+          opacity: 0;
+          transition: transform .5s, opacity 1s;
+        }
+        
+        .ripple:active:after {
+          transform: scale(0, 0);
+          opacity: .3;
+          transition: 0s;
+        }
+        
+        ::-webkit-scrollbar {
+          width: 0;
+        }
+        .sends{
+        background: rgb(31, 113, 221);
+        color: #f3f3f3;
+        border: none;
+        outline:none;
+        height: 36px;
+        width: 40px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        position: absolute;
+        z-index: 100;
+        left: 250px;
+        }
+        #chat{
+            display: none
+        }
+        #chatWrapprt{
+            float: left;
+            border: 1px solid #000;
+        }
+    </style>
+                            <div id="user">
+                                <p id="error"></p>
+                                <input type="text" id="username" placeholder="enter username here">
+                                <button id="post">send</button>
+                            </div>
+                            <div id="chatWrapper">
+                                <div id="chat">
+                                      
+                                      <div class="wrapper">
+                                            <header>
+                                        
+                                              <h6>Chat</h6>
+                                        
+                                            </header>
+                                            
+                                            <section>
+                                              <div class="scroll">
+                   
+                                              <div class="message-wrapper out">
+                                                <div class="message-box">
+                                                    <p>
+                                                        items are centered along the line   
+                                                    </p>
+                                                
+                                                </div>
+                                                <span class="ago">2:51 am.</span>
+                                              </div>
+                                    
+                                              </div>
+                                            </section>
+                                            
+                                            <footer>
+                                              <div>
+                                                <textarea type="text" id="massage" class="search"></textarea>
+                                                <button class="sends" id="btn">send</button>
+                                              </div>
+                                            </footer>
+                                          </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+        crossorigin="anonymous"></script>
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <script src="/js/function.js"></script>
+                
+</body>
+</html>

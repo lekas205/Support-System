@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
+    <title>Document</title>
+</head>
+<body>
+        <style>
+            @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+        body {
+          background-color: #000;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeLegibility;
+        }
+        
+        .container {
+          margin: 60px auto;
+          background: #000;
+          padding: 0;
+          border-radius: 7px;
+          filter: drop-shadow(0 0 0.75rem #ABF0F9);
+        }
+        
+        .profile-image {
+          width: 50px;
+          height: 50px;
+          border-radius: 40px;
+        }
+        
+        .settings-tray {
+          background: #000;
+          padding: 10px 15px;
+          border-radius: 7px;
+        }
+        .settings-tray .no-gutters {
+          padding: 0;
+        }
+        .settings-tray--right {
+          float: right;
+        }
+        .settings-tray--right i {
+          margin-top: 10px;
+          font-size: 25px;
+          color: #BA87FF;
+          margin-left: 14px;
+          transition: .3s;
+        }
+        .settings-tray--right i:hover {
+          color: blue;
+          cursor: pointer;
+        }
+        
+        .search-box {
+          background: #000;
+          padding: 10px 13px;
+        }
+        .search-box .input-wrapper {
+          background: #000;
+          border-radius: 40px;
+          filter: drop-shadow(0 0 0.75rem #BA87FF);
+        }
+        .search-box .input-wrapper i {
+          color: #ABF0F9;
+          margin-left: 7px;
+          vertical-align: middle;
+        }
+        
+        input {
+          border: none;
+          border-radius: 30px;
+          width: 80%;
+          background: #000;
+          font-family: 'Roboto', sans-serif;
+          text-shadow: 1px 1px 15px #BA87FF;
+        }
+        input::placeholder {
+          color: #BA87FF;
+          font-weight: 300;
+          margin-left: 20px;
+          font-family: 'Roboto', sans-serif;
+        }
+        input:focus {
+          outline: none;
+        }
+        
+        .friend-drawer {
+          padding: 10px 15px;
+          display: flex;
+          vertical-align: baseline;
+          background: #000;
+          transition: .3s ease;
+          margin-bottom: 19px;
+        }
+        .friend-drawer--grey {
+          border-bottom: 1px solid #BA87FF;
+          padding-bottom: 15px;
+        }
+        .friend-drawer .text {
+          margin-left: 12px;
+          width: 70%;
+        }
+        .friend-drawer .text h6 {
+          margin-top: 6px;
+          margin-bottom: 0;
+          color: #BA87FF;
+          font-family: 'Roboto', sans-serif;
+        }
+        .friend-drawer .text p {
+          margin: 0;
+          color: #ABF0F9;
+          font-family: 'Roboto', sans-serif;
+        }
+        .friend-drawer .time {
+          color: #BA87FF;
+        }
+        .friend-drawer--onhover:hover {
+          background: #ABF0F9;
+          cursor: pointer;
+        }
+        .friend-drawer--onhover:hover p,
+        .friend-drawer--onhover:hover h6,
+        .friend-drawer--onhover:hover .time {
+          color: #000 !important;
+        }
+        
+        hr {
+          margin: 5px auto;
+          width: 60%;
+          border-color: #BA87FF;
+          filter: drop-shadow(0 0 0.75rem #BA87FF);
+        }
+        
+        .chat-bubble {
+          padding: 10px 14px;
+          background: #000;
+          color: #ABF0F9;
+          border: 1px solid #BA87FF;
+          margin: 10px 30px;
+          border-radius: 9px;
+          font-family: 'Roboto', sans-serif;
+        }
+        
+        @keyframes slideFromLeft {
+          0% {
+            margin-left: -200px;
+            opacity: 0;
+          }
+          100% {
+            margin: 10px 30px;
+            opacity: 1;
+          }
+        }
+        .border-left,
+        .border-right {
+          border-color: #BA87FF !important;
+        }
+        
+        .offset-md-9 .chat-bubble {
+          background: #000;
+          color: #ABF0F9;
+          border: 1px solid #BA87FF;
+        }
+        
+        .chat-box-tray {
+          background: #000;
+          display: flex;
+          align-items: baseline;
+          padding: 10px 15px;
+          align-items: center;
+          margin-top: 40px;
+          bottom: 0;
+        }
+        .chat-box-tray input {
+          margin: 0 10px;
+          padding: 6px 2px;
+        }
+        .chat-box-tray i {
+          color: #ABF0F9;
+          font-size: 30px;
+          vertical-align: middle;
+          filter: drop-shadow(0 0 0.75rem #BA87FF);
+        }
+        .chat-box-tray i:last-of-type {
+          margin-left: 25px;
+        }
+        #chat{
+            display: none
+        }
+        #chatWrapprt{
+            float: left;
+            border: 1px solid #000;
+        }
+        .badge{
+          background: rgb(41, 5, 88);
+          padding: 10px 12px;
+          border-radius: 50%;
+          /* height: 25px;
+          width: 25px; */
+          color: #fff;
+        }
+  </style>
+                
+                <div class="main">
+                    <div class="main-content">
+                        <div class="container-fluid">
+                
+                            <div id="user">
+                                <p id="error"></p>
+                                <input type="text" id="username" placeholder="enter username here">
+                                <button onclick="init()">send</button>
+                            </div>
+                            <div id="chatWrapper">
+                                <div id="chat">
+                                  
+                                    <div class="container">
+                                            <div class="row no-gutters">
+                                              <div class="col-md-4">
+                                                <div class="settings-tray">
+                                                  <img class="profile-image" src="https://scontent.fbeg1-1.fna.fbcdn.net/v/t1.0-9/60430168_1228575147309374_2946376766538645504_n.jpg?_nc_cat=104&_nc_ht=scontent.fbeg1-1.fna&oh=500b1e9ee57e3ca3d4c9a9ca963f1f3d&oe=5D81D429" alt="">
+                                                  <span class="settings-tray--right">
+                                                    <i class="material-icons">cached</i>
+                                                    <i class="material-icons">message</i>
+                                                    <i class="material-icons">menu</i>
+                                                  </span>
+                                                </div>
+                                                <div class="search-box">
+                                                  <div class="input-wrapper">
+                                                    <i class="material-icons">search</i>
+                                                    <input placeholder="Search here" type="text">
+                                                  </div>
+                                                </div>
+
+                                                <div id="clients-chats" > 
+                                                    <div class="friend-drawer friend-drawer--onhover">
+                                                    <img class="profile-image" src="http://www.allmyfriends.it/robocop.jpg" alt="">
+                                                    <div class="text">
+                                                        <h6>Robo Cop</h6>
+                                                        <p class="">Hey, you're arrested!</p>
+                                                      
+                                                    </div>
+                                                    <span class="time  small">13:21</span>
+                                                    </div>
+                                                    <div class="friend-drawer friend-drawer--onhover">
+                                                      <img class="profile-image" src="http://www.allmyfriends.it/robocop.jpg" alt="">
+                                                      <div class="text">
+                                                          <h6>Robo Cop</h6>
+                                                          <p class="">Hey, you're arrested!</p>
+                                                      </div>
+                                                      <span class="time  small">13:21</span>
+                                                      </div>
+                                                </div>
+                                               
+                        
+                                              
+                
+                                              </div>
+                                              <div class="col-md-8">
+                                                <div class="settings-tray">
+                                                    <div class="friend-drawer no-gutters friend-drawer--grey">
+                                                    <img class="profile-image" src="http://www.allmyfriends.it/robocop.jpg" alt="">
+                                                    <div class="text">
+                                                      <h6>Robo Cop</h6>
+                                                      <p id="typing"></p>
+                                                    </div>
+                                                    <span class="settings-tray--right">
+                                                      <i class="material-icons">cached</i>
+                                                      <i class="material-icons">message</i>
+                                                      <i class="material-icons">menu</i>
+                                                    </span>
+                                                  </div>
+                                                </div>
+    
+                                                <div class="chat-panel " >
+                                                    <p id="display">
+                                                           
+                                                    </p>
+                                                  
+                                                  <div class="row no-gutters" >
+                                                    <div class="col-md-3 offset-md-9">
+                                                      <div class="chat-bubble">
+                                                        Hello dude!
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row">
+                                                    <div class="col-12">
+                                                      <div class="chat-box-tray">
+                                                        <i class="material-icons">sentiment_very_satisfied</i>
+                                                        <input type="text" id="massage" placeholder="Type your message here...">
+                                                        <i class="material-icons">mic</i>
+                                                        <i class="material-icons " id="send">send</i>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+        
+                </div>
+                <script
+                src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+                crossorigin="anonymous"></script>
+                <script src="/js/jquery-2.2.3.min.js"></script>
+                 <script src="/socket.io/socket.io.js"></script>
+                 
+                 <script src="/js/server.js"></script>
+</body>
+</html>
